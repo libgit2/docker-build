@@ -1,5 +1,6 @@
 ARG BASE
 FROM $BASE
+ARG CACHEBUST=1
 
 RUN apt-get update
 RUN apt-get install -y curl apt-transport-https
