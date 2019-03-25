@@ -3,11 +3,12 @@ FROM $BASE
 ARG CACHEBUST=1
 
 RUN apt-get update
-RUN apt-get install -y curl apt-transport-https
+RUN apt-get install -y curl apt-transport-https software-properties-common
 RUN curl -sSL "https://bintray.com/user/downloadSubjectPublicKey?username=bintray" | apt-key add -
 RUN echo "deb https://dl.bintray.com/libgit2/ci-dependencies trusty libgit2deps" >> /etc/apt/sources.list
+RUN add-apt-repository ppa:openjdk-r/ppa -y
 RUN apt-get update
-RUN apt-get -y install clang git cmake libssl-dev libcurl3 libcurl3-gnutls libcurl4-gnutls-dev libssh2-1-dev valgrind openssh-client openssh-server openjdk-7-jre
+RUN apt-get -y install clang git cmake libssl-dev libcurl3 libcurl3-gnutls libcurl4-gnutls-dev libssh2-1-dev valgrind openssh-client openssh-server openjdk-8-jre
 
 RUN git clone --branch mbedtls-2.6.1 https://github.com/ARMmbed/mbedtls.git /tmp/mbedtls
 RUN (cd /tmp/mbedtls && scripts/config.pl set MBEDTLS_MD4_C 1)
