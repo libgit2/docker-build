@@ -18,3 +18,6 @@ RUN (cd /tmp/mbedtls && make install)
 RUN rm -rf /tmp/mbedtls
 
 RUN mkdir /var/run/sshd
+
+RUN useradd --create-home libgit2
+USER libgit2

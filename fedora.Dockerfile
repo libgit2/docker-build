@@ -9,4 +9,6 @@ WORKDIR "/tmp/libssh2-1.8.0"
 RUN ./configure
 RUN make
 RUN make install
+RUN useradd --create-home libgit2
+USER libgit2
 ENV PKG_CONFIG_PATH /usr/local/lib/pkgconfig
